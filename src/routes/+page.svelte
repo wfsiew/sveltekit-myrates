@@ -1,10 +1,15 @@
-<script>
+<script lang="ts">
+	import { onMount } from "svelte";
+
   /** @type {import('./$types').PageData} */
-  export let data;
+  export let data: any;
 
   let selected = data.result[0];
-  let rates = [];
-  loadRates();
+  let rates:any[] = [];
+
+  onMount(() => {
+    loadRates();
+  });
 
   async function loadRates() {
     const res = await fetch('https://fx.tajmuhabath.com.my/rbapi/WebRbService.svc/json/getdailyratesapi/', {
